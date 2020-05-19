@@ -1,0 +1,45 @@
+<app-header title="Nuevo Producto"></app-header>
+
+<ion-content>
+    <h3 class="ion-text-center">Rellena el Formulario</h3>
+    <form #f="ngForm" (ngSubmit)="onCreate()" novalidate>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+                <ion-label position="floating">Nombre del Producto: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="nombre" [(ngModel)]="nombre"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Precio (en euros): <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="number" name="precio" [(ngModel)]="precio"></ion-input>
+            </ion-item>
+
+
+            <div class="ion-padding">
+                <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
+                    <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+                    Crear
+                </ion-button>
+            </div>
+            <div class="ion-padding">
+                <ion-button color="secondary" expand="block" class="ion-no-margin" (click)="vaciar()">
+                    <ion-icon name="refresh-circle" slot="icon-only"></ion-icon>
+                    Reset
+                </ion-button>
+            </div>
+            <div class="ion-padding">
+                <ion-button color="tertiary" expand="block" class="ion-no-margin" (click)="volver()">
+                    <ion-icon name="arrow-back-circle" slot="icon-only"></ion-icon>
+                    Volver
+                </ion-button>
+            </div>
+        </ion-list>
+    </form>
+    <div class="ion-text-center">
+        <ion-label position="floating">
+            <ion-text color="danger">*</ion-text> campos obligatorios
+        </ion-label>
+    </div>
+</ion-content>

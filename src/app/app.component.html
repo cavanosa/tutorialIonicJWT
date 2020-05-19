@@ -1,3 +1,9 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <app-menu (ionWillClose)="changeMenu()" (ionWillOpen)="changeMenu()"></app-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="toggleMenu()" >
+    <ion-fab-button [color]="menuOpen? 'danger' : 'primary'">
+      <ion-icon [name]="menuOpen? 'close' : 'menu'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>

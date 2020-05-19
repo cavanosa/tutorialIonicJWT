@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  @ViewChild(MenuComponent) menu: MenuComponent;
+
+  menuOpen = false;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private menuController: MenuController
   ) {
     this.initializeApp();
   }
@@ -23,5 +30,14 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  toggleMenu(): void {
+    this.menu.testLogged();
+    this.menuController.toggle('first');
+  }
+
+  changeMenu(): void {
+    this.menuOpen = !this.menuOpen;
   }
 }

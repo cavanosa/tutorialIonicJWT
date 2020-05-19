@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  isLogged = false;
+  userName = 'pepito';
+
+  constructor(
+    private tokenService: TokenService
+  ) {}
+
+  ionViewWillEnter() {
+    this.testLogged();
+  }
+
+  testLogged(): void {
+    this.isLogged = this.tokenService.getToken() != null;
+    this.userName = this.tokenService.getUserName();
+  }
 
 }
