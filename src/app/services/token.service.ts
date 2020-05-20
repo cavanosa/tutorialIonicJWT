@@ -30,20 +30,12 @@ export class TokenService {
     return userName;
   }
 
-  public getAuthorities(): string[] {
-   const roles: string[] = [];
-   if(this.getToken()) {
-    const sub = jwt_decode(this.getToken()).sub;
-    if(sub === 'admin'){
-      roles.push('admin');
-    }
-    roles.push('user');
-   }
-   return roles;
-  }
-
   isAdmin(): boolean {
-    return this.getAuthorities().length > 1;
+    if(this.getToken()) {
+      const sub = jwt_decode(this.getToken()).sub;
+      return (sub === 'admin');
+    }
+    return false;
   }
 
   public logOut(): void {
